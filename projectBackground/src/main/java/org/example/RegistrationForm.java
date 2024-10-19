@@ -28,7 +28,7 @@ public class RegistrationForm extends JFrame implements ActionListener {
         container.setLayout(null);
 
         // Set the background image using the absolute path
-        ImageIcon backgroundIcon = new ImageIcon("C:\\Users\\admin\\IdeaProjects\\loginForm\\src\\main\\java\\org\\example\\img.png");
+        ImageIcon backgroundIcon = new ImageIcon("D:\\LUDO_java\\projectBackground\\src\\main\\java\\org\\example\\img.png");
 
         // Verify if the image was loaded successfully
         if (backgroundIcon.getIconWidth() > 0) {
@@ -43,7 +43,7 @@ public class RegistrationForm extends JFrame implements ActionListener {
 
         // Add headline label
         headlineLabel = new JLabel("REGISTRATION FORM");
-        headlineLabel.setBounds(100, 30, 500, 30);
+        headlineLabel.setBounds(40, 30, 500, 30);
         headlineLabel.setForeground(Color.WHITE);
         headlineLabel.setFont(new Font("Verdana", Font.BOLD, 30));
         container.add(headlineLabel);

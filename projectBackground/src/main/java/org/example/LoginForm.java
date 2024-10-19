@@ -122,6 +122,7 @@ public class LoginForm extends JFrame implements ActionListener {
             String password = String.valueOf(passwordField.getPassword());
 
             // Check credentials against the database
+
             try (Connection connection = DatabaseConnection.getConnection()) {
                 String query = "SELECT * FROM users WHERE username = ? AND password = ?";
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
