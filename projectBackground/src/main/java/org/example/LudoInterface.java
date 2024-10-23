@@ -1,5 +1,7 @@
 package org.example;
 
+import javafx.application.Application;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -92,17 +94,19 @@ public class LudoInterface extends JFrame {
                     protected void done() {
                         // Close the current window (LudoInterface)
                         LudoInterface.this.dispose();
-                        new LudoBoard();
 
-                        // Create a new LudoBoard instance which will create and display the Ludo window
-                        // You may want to instantiate your game board here
-                        // For example, if you have a class for Classic Ludo and another for Snake Ladder, instantiate accordingly
-                        // if (e.getSource() == classicLudoButton) {
-                        //     new ClassicLudoBoard();
-                        // } else {
-                        //     new SnakeLadderBoard();
-                        // }
+                        // Check which button was clicked
+                        if (e.getSource() == classicLudoButton) {
+                            // Instantiate the Classic Ludo game logic here
+                            new LudoBoard();  // Assuming LudoBoard is a Swing-based class
+                        } else if (e.getSource() == snakeLadderButton) {
+                            // Launch the JavaFX DiceRoll class properly
+                            new Thread(() -> {
+                                Application.launch(org.example.DiceRoll.class);
+                            }).start();
+                        }
                     }
+
 
                 };
                 worker.execute();

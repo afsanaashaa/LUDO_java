@@ -13,7 +13,8 @@ public class LudoBoard extends JPanel {
         JFrame jframe = new JFrame();
         jframe.setBounds(10, 10, 1000, 900);
         jframe.setLocationRelativeTo(null);
-        jframe.setBackground(Color.white);
+        jframe.setBackground(Color.WHITE);
+
         jframe.setTitle("LUDO");
         jframe.setResizable(false);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

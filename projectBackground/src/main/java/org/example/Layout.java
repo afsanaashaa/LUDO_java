@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.swing.*;
 import java.awt.*;
 
 // Layout class to draw board
@@ -14,7 +15,7 @@ class Layout {
 
     // Method to draw board
     public void draw(Graphics2D g){
-        g.setColor(Color.WHITE); // Color of background of board
+        g.setColor(Color.PINK); // Color of background of board
         g.fillRect(x,y,15*width,15*height); // Drawing background of board
         for(int i=0;i<6;i++) { // drawing all the inner squares
             g.setColor(Color.RED);
@@ -128,5 +129,7 @@ class Layout {
         g.setFont(new Font("Verdana", Font.BOLD, 27));
         g.drawString("Press enter to roll dice", 550,150);
         g.drawString("Click on the token to move", 550,200);
+        //g.drawString("Back", 650, 600);
+
     }
 }

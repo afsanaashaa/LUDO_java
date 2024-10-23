@@ -101,7 +101,7 @@ public class RegistrationForm extends JFrame implements ActionListener {
         panel.add(registerButton);
 
         // Back button to return to the login form
-        backButton = new JButton("Back");
+        backButton = new JButton("Login");
         backButton.setBounds(200, 180, 150, 40);
         customizeButton(backButton, new Color(70, 130, 180), Color.WHITE);
         panel.add(backButton);

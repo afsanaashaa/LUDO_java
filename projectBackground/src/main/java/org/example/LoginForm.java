@@ -9,14 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class LoginForm extends JFrame implements ActionListener {
-    // Components for the login form
     private Container container;
     private JLabel userLabel, passwordLabel, messageLabel, backgroundLabel, headlineLabel;
     private JTextField userTextField;
     private JPasswordField passwordField;
-    private JButton loginButton, registerButton;
+    private JButton loginButton, backButton;
 
-    // Constructor to set up the login form
     public LoginForm() {
         // Set frame properties
         setTitle("Login Form");
@@ -41,7 +39,7 @@ public class LoginForm extends JFrame implements ActionListener {
         headlineLabel.setFont(new Font("Verdana", Font.BOLD, 30));
         container.add(headlineLabel);
 
-        // Create a panel to hold the form components on top of the background
+        // Create a panel to hold the form components
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setBounds(50, 100, 400, 300);
@@ -82,15 +80,21 @@ public class LoginForm extends JFrame implements ActionListener {
         customizeButton(loginButton, new Color(70, 130, 180), Color.WHITE);
         panel.add(loginButton);
 
-        // Register button
-        registerButton = new JButton("Register");
-        registerButton.setBounds(200, 130, 150, 40);
-        customizeButton(registerButton, new Color(60, 179, 113), Color.WHITE);
-        panel.add(registerButton);
+        // Back button to return to the main page
+        backButton = new JButton("Back");
+        backButton.setBounds(200, 130, 150, 40);
+        customizeButton(backButton, new Color(60, 179, 113), Color.WHITE);
+        panel.add(backButton);
 
         // Adding action listeners
         loginButton.addActionListener(this);
-        registerButton.addActionListener(this);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LoginRegistrationPage(); // Go back to the main page
+                dispose(); // Close the login form
+            }
+        });
 
         // Add the panel on top of the background
         container.add(panel);
@@ -114,14 +118,11 @@ public class LoginForm extends JFrame implements ActionListener {
         button.setOpaque(true);
     }
 
-    // Action handler
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
             String username = userTextField.getText();
             String password = String.valueOf(passwordField.getPassword());
-
-            // Check credentials against the database
 
             try (Connection connection = DatabaseConnection.getConnection()) {
                 String query = "SELECT * FROM users WHERE username = ? AND password = ?";
@@ -133,7 +134,7 @@ public class LoginForm extends JFrame implements ActionListener {
                 if (resultSet.next()) {
                     messageLabel.setForeground(new Color(34, 139, 34)); // Forest Green
                     messageLabel.setText("Login successful!");
-                    // Proceed to the next page, e.g., dashboard
+                    // Proceed to the next page
                     LudoInterface ludoInterface = new LudoInterface();
                     ludoInterface.setVisible(true);
                     dispose();
@@ -145,12 +146,6 @@ public class LoginForm extends JFrame implements ActionListener {
                 ex.printStackTrace();
                 messageLabel.setText("Database error!");
             }
-        }
-
-        // If the register button is clicked, open the registration form
-        if (e.getSource() == registerButton) {
-            new RegistrationForm();
-            dispose(); // Close the login form
         }
     }
 }
